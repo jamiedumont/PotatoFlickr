@@ -8,12 +8,10 @@
 
   <img ng-src="{{ image.media.m }}">
 
-  <div ng-bind-html="image.description"></div>
+  <div ng-bind-html="image.description | cleanDescription" id="description"></div>
 
-  <ul>
-    <li>Tags</li>
-    <li>Tags</li>
-  </ul>
+  <h4>Tags</h4>
+  <div ng-bind-html="image.tags | tagsLinks"></div>
 
   <a href="#/">Back</a>
 

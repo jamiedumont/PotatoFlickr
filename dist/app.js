@@ -27,7 +27,6 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
       $scope.image = data[$routeParams.id];
     });
 }])
-
 	.factory('FlickrApi', ['$http', '$q', function ($http, $q) {
 	    var defer = $q.defer();
 	
@@ -37,7 +36,24 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 	      });
 	
 	    return defer.promise;
-	}]);
+	}])
+	.filter('tagsLinks', function () {
+		return function(input) {
+			var output = '';
+			var arr = String(input).split(' ');
+			arr.forEach(function(tag) {
+				output += '<a href="https://www.flickr.com/search/?tags=' + tag + '" target="_blank">' + tag + '</a>';
+			});
+			return output;
+		};
+	})
+	.filter('cleanDescription', function () {
+		return function(input) {
+			var p = input.getElementsByTagName('p')[0];
+			p.remove();
+		};
+	});
+	
 
 
 
