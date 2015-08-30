@@ -1,0 +1,20 @@
+<div ng-controller='DetailController'>
+  
+  <a href="{{ image.link }}"><h1>{{ image.title }}</h1></a>
+
+  <a href="{{ image.author_id }}">Photo Author</a>
+
+  <p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
+
+  <img ng-src="{{ image.media.m }}">
+
+  <div ng-bind-html="image.description"></div>
+
+  <ul>
+    <li>Tags</li>
+    <li>Tags</li>
+  </ul>
+
+  <a href="#/">Back</a>
+
+</div>

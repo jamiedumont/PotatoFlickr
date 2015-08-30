@@ -1,0 +1,19 @@
+{
+  "name": "potatoflickr",
+  "version": "0.0.1",
+  "description": "Angular & Browserify app that displays a Flickr Public feed for Potato",
+  "author": "Jamie Dumont",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.4.5",
+    "angular-route": "^1.4.5",
+    "angular-sanitize": "^1.4.5",
+    "browserify": "^11.0.1",
+    "node-bourbon": "^4.2.3",
+    "node-neat": "^1.7.2"
+  },
+  "scripts": {
+    "build:css": "node-sass assets/scss/app.scss > dist/main.css",
+    "build:js": "browserify assets/js/app.js > dist/app.js"
+  }
+}

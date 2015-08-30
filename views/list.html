@@ -1,0 +1,9 @@
+<div ng-controller="MainController">
+  <div ng-repeat="image in images">
+    <img ng-src="{{ image.media.m }}">
+    <a href="#/images/{{ images.indexOf(image) }}">{{ image.title }}</a>
+    <p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
+    <a href="{{ image.author_id }}">Photo Author</a>
+    <a href="{{ image.link }}">View on Flickr</a>
+  </div>
+</div>
