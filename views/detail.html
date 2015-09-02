@@ -2,13 +2,15 @@
   
   <a href="{{ image.link }}"><h1>{{ image.title }}</h1></a>
 
-  <a href="{{ image.author_id }}">Photo Author</a>
+  <a href="{{ image.author_id | photoAuthor }}">Photo Author</a>
 
   <p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
 
   <img ng-src="{{ image.media.m }}">
 
-  <div ng-bind-html="image.description | cleanDescription" id="description"></div>
+<!--   <div> {{ image.description }}</div> -->
+  
+  <div ng-bind-html="image.description" id="description">
 
   <h4>Tags</h4>
   <div ng-bind-html="image.tags | tagsLinks"></div>

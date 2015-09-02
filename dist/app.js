@@ -49,15 +49,19 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 	})
 	.filter('cleanDescription', function () {
 		return function(input) {
-			var p = input.getElementsByTagName('p')[0];
-			p.remove();
+			var trim = require('trim');
+			var a = angular.element("<div>").append(angular.element(input));
+			a.find('p:nth-child(1), p:nth-child(2)').remove();
+			var output = trim(a.text());
+			return output || 'No description available.';
+		};
+	})
+	.filter('photoAuthor', function () {
+		return function(input) {
+		  return 'https://www.flickr.com/photos/' + input;
 		};
 	});
-	
-
-
-
-},{"angular":7,"angular-route":3,"angular-sanitize":5}],2:[function(require,module,exports){
+},{"angular":7,"angular-route":3,"angular-sanitize":5,"trim":8}],2:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.5
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -30436,4 +30440,20 @@ $provide.value("$locale", {
 require('./angular');
 module.exports = angular;
 
-},{"./angular":6}]},{},[1]);
+},{"./angular":6}],8:[function(require,module,exports){
+
+exports = module.exports = trim;
+
+function trim(str){
+  return str.replace(/^\s*|\s*$/g, '');
+}
+
+exports.left = function(str){
+  return str.replace(/^\s*/, '');
+};
+
+exports.right = function(str){
+  return str.replace(/\s*$/, '');
+};
+
+},{}]},{},[1]);

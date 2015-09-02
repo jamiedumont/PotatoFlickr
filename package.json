@@ -10,10 +10,13 @@
     "angular-sanitize": "^1.4.5",
     "browserify": "^11.0.1",
     "node-bourbon": "^4.2.3",
-    "node-neat": "^1.7.2"
+    "node-neat": "^1.7.2",
+    "watch": "^0.16.0"
   },
   "scripts": {
-    "build:css": "node-sass assets/scss/app.scss > dist/main.css",
-    "build:js": "browserify assets/js/app.js > dist/app.js"
+    "build:css": "node-sass assets/scss/app.scss > dist/app.css",
+    "build:js": "browserify assets/js/app.js > dist/app.js",
+    "build": "npm run build:css && npm run build:js",
+    "watch:css": "watch 'npm run build:css' ."
   }
 }

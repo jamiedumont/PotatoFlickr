@@ -1,0 +1,6 @@
+.dark-on-light {
+    @include font-smoothing(off);
+}
+.light-on-dark {
+    @include font-smoothing(on);
+}

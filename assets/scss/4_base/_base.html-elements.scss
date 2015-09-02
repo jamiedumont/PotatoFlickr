@@ -1,0 +1,19 @@
+// BASE STYLING OF HTML ELEMENTS
+// Styling for HTML elements without any classes.
+
+html,
+body {
+	font-family: $body-font;
+	background-color: $dark-blue;
+	color: $off-white;
+}
+
+h2 {
+	font-size: 2rem;
+	color: $dark-blue;
+	margin-bottom: 1rem;
+}
+
+h2:hover {
+	color: $salmon;
+}

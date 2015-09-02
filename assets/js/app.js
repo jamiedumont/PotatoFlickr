@@ -48,10 +48,15 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 	})
 	.filter('cleanDescription', function () {
 		return function(input) {
-			var p = input.getElementsByTagName('p')[0];
-			p.remove();
+			var trim = require('trim');
+			var a = angular.element("<div>").append(angular.element(input));
+			a.find('p:nth-child(1), p:nth-child(2)').remove();
+			var output = trim(a.text());
+			return output || 'No description available.';
+		};
+	})
+	.filter('photoAuthor', function () {
+		return function(input) {
+		  return 'https://www.flickr.com/photos/' + input;
 		};
 	});
-	
-
-

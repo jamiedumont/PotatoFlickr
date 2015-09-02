@@ -1,0 +1,15 @@
+// BASE MODIFIERS
+// Takes the standard HTML elements and ammends them subtly. These can be considered as low specificity utility classes.
+
+.btn {
+	padding: $base-spacing-unit, $base-spacing-unit*1.4;
+	background-color: $salmon--hover;
+	color: $dark-blue;
+	display: inline-block;
+	font-size: 0.8rem;
+}
+
+.btn:hover{
+	background-color: $dark-blue;
+	color: $salmon;
+}
