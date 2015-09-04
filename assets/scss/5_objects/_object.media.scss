@@ -1,16 +1,9 @@
 // MEDIA OBJECT
 // As per http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 
-.media {margin:$base-spacing-unit; clear:both;}
+.media {clear:both;}
 .media__body {overflow:hidden;}
 .media__img {float:left; margin-right: $base-spacing-unit;}
 .media__img img{display:block;}
 .media__img--rev {float:right; margin-left: $base-spacing-unit;}
 
-.feed-item__thumbnail {
-	width: 20%;
-	height: 180px;
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-}

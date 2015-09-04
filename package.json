@@ -8,15 +8,28 @@
     "angular": "^1.4.5",
     "angular-route": "^1.4.5",
     "angular-sanitize": "^1.4.5",
+    "angularjs-filters": "0.0.2",
     "browserify": "^11.0.1",
     "node-bourbon": "^4.2.3",
     "node-neat": "^1.7.2",
-    "watch": "^0.16.0"
+    "parallelshell": "^2.0.0"
   },
   "scripts": {
-    "build:css": "node-sass assets/scss/app.scss > dist/app.css",
     "build:js": "browserify assets/js/app.js > dist/app.js",
-    "build": "npm run build:css && npm run build:js",
-    "watch:css": "watch 'npm run build:css' ."
-  }
+    "watch:js": "watch 'npm run build:js' assets/js/",
+    "build:css": "node-sass assets/scss/app.scss > dist/app.css",
+    "watch:css": "watch 'npm run build:css' assets/scss/",
+    "build": "npm run build:js && npm run build:css",
+    "build:watch": "parallelshell 'npm run watch:js' 'npm run watch:css'"
+  },
+  "dependencies": {
+    "browserify-shim": "^3.8.10"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {},
+  "browserify-shim": {}
 }

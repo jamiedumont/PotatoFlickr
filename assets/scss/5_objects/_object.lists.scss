@@ -1,0 +1,11 @@
+.inline-list {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.inline-list {
+	li {
+		margin-right: $base-spacing-unit;
+	}
+}

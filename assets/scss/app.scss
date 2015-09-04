@@ -29,12 +29,17 @@
 @import "5_objects/object.base-modifiers.scss";
 @import "5_objects/object.media.scss";
 @import "5_objects/object.containers.scss";
+@import "5_objects/object.lists.scss";
 
 /*
  *    6 - Components
  */
+ @import "6_components/component.feed.scss";
 
 /*
  *    7 - Trumps
  */
 @import "7_trumps/_trump.font-smoothing";
+@import "7_trumps/_trump.display";
+@import "7_trumps/_trump.description-filter";
+@import "7_trumps/_trump.intro";

@@ -1,8 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var angular = require('angular');
 
-angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanitize')])
-	.config(function ($routeProvider) {
+angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanitize'), require('angularjs-filters')])
+	.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
 	      .when ('/', {
 	        controller: 'MainController',
@@ -15,19 +15,71 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 	      .otherwise ({
 	        redirectTo: '/'
 	      });
-	})
-	.controller('MainController', ['$scope', 'FlickrApi', function ($scope, FlickrApi) {
-  FlickrApi.then(function(data) {
-      $scope.images = data;
-    });
-  }])
+	}]);
+	
 
-	.controller('DetailController', ['$scope', 'FlickrApi', '$routeParams', '$sce', function($scope, FlickrApi, $routeParams, $sce) {
+	
+// Services	
+require('./services/FlickrApi');
+
+// Controllers
+require('./controllers/MainController');
+require('./controllers/DetailController');	
+	
+	
+// Filters
+require('./filters/photoAuthor');
+require('./filters/cleanDescription');
+require('./filters/tagsLinks');
+
+
+},{"./controllers/DetailController":2,"./controllers/MainController":3,"./filters/cleanDescription":4,"./filters/photoAuthor":5,"./filters/tagsLinks":6,"./services/FlickrApi":7,"angular":13,"angular-route":9,"angular-sanitize":11,"angularjs-filters":15}],2:[function(require,module,exports){
+angular.module('PotatoFlickr')
+.controller('DetailController', ['$scope', 'FlickrApi', '$routeParams', '$sce', function($scope, FlickrApi, $routeParams, $sce) {
     FlickrApi.then(function(data) {
       $scope.image = data[$routeParams.id];
     });
-}])
-	.factory('FlickrApi', ['$http', '$q', function ($http, $q) {
+}]);
+},{}],3:[function(require,module,exports){
+angular.module('PotatoFlickr')
+.controller('MainController', ['$scope', 'FlickrApi', function ($scope, FlickrApi) {
+  FlickrApi.then(function(data) {
+      $scope.images = data;
+    });
+  }]);
+},{}],4:[function(require,module,exports){
+angular.module('PotatoFlickr')
+.filter('cleanDescription', function ($sce) {
+		return function(input) {
+			var trim = require('trim');
+			var a = angular.element("<div>").append($sce.trustAsHtml(input));
+			a.find('p:nth-child(1), p:nth-child(2)').remove();
+			var output = trim(a.text());
+			return output || 'No description available.';
+		};
+	});
+},{"trim":16}],5:[function(require,module,exports){
+angular.module('PotatoFlickr')
+	.filter('photoAuthor', function () {
+			return function(input) {
+			  return 'https://www.flickr.com/photos/' + input;
+			};
+	});
+},{}],6:[function(require,module,exports){
+angular.module('PotatoFlickr')
+.filter('tagsLinks', function () {
+		return function(input) {
+			var output = '';
+			var arr = String(input).split(' ');
+			arr.forEach(function(tag) {
+				output += '<a class="btn btn--tag" href="https://www.flickr.com/search/?tags=' + tag + '" target="_blank">' + tag + '</a>';
+			});
+			return output;
+		};
+	});
+},{}],7:[function(require,module,exports){
+angular.module('PotatoFlickr')
+.factory('FlickrApi', ['$http', '$q', function ($http, $q) {
 	    var defer = $q.defer();
 	
 	    $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?tags=potato&tagmode=all&format=json&jsoncallback=JSON_CALLBACK')
@@ -36,32 +88,8 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 	      });
 	
 	    return defer.promise;
-	}])
-	.filter('tagsLinks', function () {
-		return function(input) {
-			var output = '';
-			var arr = String(input).split(' ');
-			arr.forEach(function(tag) {
-				output += '<a href="https://www.flickr.com/search/?tags=' + tag + '" target="_blank">' + tag + '</a>';
-			});
-			return output;
-		};
-	})
-	.filter('cleanDescription', function () {
-		return function(input) {
-			var trim = require('trim');
-			var a = angular.element("<div>").append(angular.element(input));
-			a.find('p:nth-child(1), p:nth-child(2)').remove();
-			var output = trim(a.text());
-			return output || 'No description available.';
-		};
-	})
-	.filter('photoAuthor', function () {
-		return function(input) {
-		  return 'https://www.flickr.com/photos/' + input;
-		};
-	});
-},{"angular":7,"angular-route":3,"angular-sanitize":5,"trim":8}],2:[function(require,module,exports){
+	}]);
+},{}],8:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.5
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -1054,11 +1082,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],3:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":2}],4:[function(require,module,exports){
+},{"./angular-route":8}],10:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.5
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -1743,11 +1771,11 @@ angular.module('ngSanitize').filter('linky', ['$sanitize', function($sanitize) {
 
 })(window, window.angular);
 
-},{}],5:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 require('./angular-sanitize');
 module.exports = 'ngSanitize';
 
-},{"./angular-sanitize":4}],6:[function(require,module,exports){
+},{"./angular-sanitize":10}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.5
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -30436,11 +30464,139 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],7:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":6}],8:[function(require,module,exports){
+},{"./angular":12}],14:[function(require,module,exports){
+angular.module("ch.filters",[])
+.filter("print", [ function() {
+  return function(str){
+      console.log("ch.filters.debug.print", str);
+      return str;
+    }
+  }
+])
+/***  Boolean Filters *****/
+.filter("YesNo", [ function() {
+  return function(b){
+      return b === true? 'Yes' : 'No';
+    }
+  }
+])
+/***  String Filters *****/
+.filter("format", [ function() {
+  return function(str){
+      if (!str || arguments.length <=1 ) return str;
+      var args = arguments;
+      for (var i = 1; i < arguments.length; i++) {       
+        var reg = new RegExp("\\{" + (i - 1) + "\\}", "gm");             
+        str = str.replace(reg, arguments[i]);
+      }
+      return str;
+    }
+  }
+]).filter("html2string", [ function() {
+  return function(str){
+      if (!str) return str;
+      return $('<div/>').html(str).text();
+    }
+  }
+]).filter("shorten", [ function() {
+  return function(str,length){
+      if (!str || !length || str.length <= length) return (str || '');
+      return  str.substr(0, length) + (length <= 3 ? '' : '...');
+    }
+  }
+]).filter("lowercase", [ function() {
+  return function(str){
+      return (str || '').toLowerCase();
+    }
+  }
+]).filter("uppercase", [ function() {
+  return function(str){
+      return (str || '').toUpperCase();
+    }
+  }
+]).filter("camelcase", [ function(){
+ return function(str){
+    return (str || '').toLowerCase().replace(/(\s.|^.)/g, function(match, group) {
+        return group ? group.toUpperCase() : '';
+    });
+  } 
+ }                
+]).filter("trim", [ function(){
+ return function(str){
+    return (str || '').replace(/(^\s*|\s*$)/g, function(match, group) {
+        return '';
+    });
+  } 
+ }                
+]).filter("trimstart", [ function(){
+ return function(str){
+   return (str || '').replace(/(^\s*)/g, function(match, group) {
+        return '';
+    });
+  } 
+ }                
+]).filter("trimend", [ function(){
+ return function(str){
+    return (str || '').replace(/(\s*$)/g, function(match, group) {
+        return '';
+    });  
+  } 
+ }                
+]).filter("replace", [ function(){
+ return function(str, pattern, replacement, global){
+    global = (typeof global == 'undefined' ? true : global);
+    try {
+	  str = str ? (typeof global == 'string' ? str : str.toString()) : '';
+      return str.replace(new RegExp(pattern,global ? "g": ""),function(match, group) {
+        return replacement;
+      });  
+    } catch(e) {
+      console.error("error in string.replace", e);
+      return (str || '');
+    }     
+  } 
+ }                
+]).filter("max", [ function(){
+ return function(arr){
+    if (!arr) return arr;
+    return Math.max.apply(null, arr);  
+  } 
+ }                
+]).filter("min", [ function(){
+ return function(arr){
+    if (!arr) return arr;
+    return Math.min.apply(null, arr);   
+  } 
+ }                
+]).filter("join", [ function(){
+ return function(arr,seperator){
+    if (!arr) return arr;
+    return arr.join(seperator || ',');   
+  } 
+ }                
+]).filter("reverse", [ function(){
+ return function(arr){
+    if (!arr) return arr;
+    return arr.reverse();   
+  } 
+ }                
+]);
+
+},{}],15:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var angular = (typeof window !== "undefined" ? window['angular'] : typeof global !== "undefined" ? global['angular'] : null);
+require('./filters.js');
+
+module.exports = 'ch.filters';
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./filters.js":14}],16:[function(require,module,exports){
 
 exports = module.exports = trim;
 

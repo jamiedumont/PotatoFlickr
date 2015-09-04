@@ -1,0 +1,22 @@
+#intro {
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	margin: 3rem auto;
+	color: $off-white;
+	h1 {
+		font-family: 'Merriweather', Helvetica, Arial, sans-serif;
+		font-size: 2rem;
+		font-weight: 500;
+		color: $off-white;
+	}
+	p {
+		font-weight: 300;
+		font-size: 0.8rem;
+	}
+	a {
+		color: $salmon;
+		text-decoration: none;
+	}
+}

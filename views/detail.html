@@ -1,20 +1,36 @@
-<div ng-controller='DetailController'>
+<div class="photo-detail" ng-controller='DetailController'>
   
-  <a href="{{ image.link }}"><h1>{{ image.title }}</h1></a>
+  <a href="{{ image.link }}" target="_blank"><h1>{{ image.title }}</h1></a>
 
-  <a href="{{ image.author_id | photoAuthor }}">Photo Author</a>
+  <ul class="inline-list">
+  	<li>
+  		<a class="btn" href="{{ image.author_id | photoAuthor }}" target="_blank">Photo Author</a>
+  	</li>
 
-  <p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
+  	<li>
+  		<p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
+  	</li>
+  </ul>
 
-  <img ng-src="{{ image.media.m }}">
 
-<!--   <div> {{ image.description }}</div> -->
+  <div class="media">
+
+  	<div class="media__img">
+  		<img ng-src="{{ image.media.m }}"></img>
+  	</div>
+
+  	<div class="media__body">
+  		<div ng-bind-html="image.description" id="description"></div>
+  		<div class="tags">
+		  	<h4>Tags:</h4>
+		  	<div class="tags__container" ng-bind-html="image.tags | tagsLinks"></div>
+		</div>
+
+  	</div>
+  </div>
   
-  <div ng-bind-html="image.description" id="description">
+  <a class="btn btn--back" href="#/">Back</a>
 
-  <h4>Tags</h4>
-  <div ng-bind-html="image.tags | tagsLinks"></div>
 
-  <a href="#/">Back</a>
 
 </div>

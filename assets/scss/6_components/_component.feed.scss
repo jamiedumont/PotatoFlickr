@@ -1,0 +1,42 @@
+.feed-item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid $grey;
+}
+
+
+.feed-item__thumbnail {
+	width: 180px;
+	height: 180px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.photo-detail {
+	padding: $base-spacing-unit;
+}
+
+
+.tags {
+
+	margin: $base-spacing-unit*2 $base-spacing-unit;
+
+	h4 {
+		color: $dark-blue;
+	}
+	
+}
+
+
+.tags__container {
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 30px;
+}
+
+.feed-item__details {
+	a, p {
+		margin-right: $base-spacing-unit;
+	}
+}

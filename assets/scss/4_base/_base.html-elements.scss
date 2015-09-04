@@ -8,12 +8,19 @@ body {
 	color: $off-white;
 }
 
-h2 {
+
+h1,h2 {
 	font-size: 2rem;
 	color: $dark-blue;
-	margin-bottom: 1rem;
+	margin-bottom: $base-spacing-unit/2;
+	line-height: 1.25em;
 }
 
 h2:hover {
 	color: $salmon;
+}
+
+p {
+	margin-bottom: $base-spacing-unit/2;
+	font-weight: 300;
 }
