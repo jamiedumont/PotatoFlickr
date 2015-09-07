@@ -2,7 +2,7 @@
 // Takes the standard HTML elements and ammends them subtly. These can be considered as low specificity utility classes.
 
 .btn {
-	padding: $base-spacing-unit $base-spacing-unit*1.4;
+	padding: $base-spacing-unit/2 $base-spacing-unit*1.4/2;
 	color: $dark-blue;
 	display: inline-block;
 	font-weight: 100;
@@ -10,6 +10,10 @@
 	border-radius: $base-spacing-unit/2;
 	border: 1px solid $dark-blue;
 	text-transform: uppercase;
+
+	@include media($tablet){
+		padding: $base-spacing-unit $base-spacing-unit*1.4;
+	}
 }
 
 .btn:hover{
@@ -31,6 +35,11 @@
 	color: white;
 	font-size: 0.6rem;
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: $base-spacing-unit;
+	right: $base-spacing-unit;
+
+	@include media($tablet){
+		top: $base-spacing-unit*2;
+		right: $base-spacing-unit*2;
+	}
 }

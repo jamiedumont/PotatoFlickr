@@ -10,10 +10,14 @@ body {
 
 
 h1,h2 {
-	font-size: 2rem;
+	font-size: 1rem;
 	color: $dark-blue;
 	margin-bottom: $base-spacing-unit/2;
 	line-height: 1.25em;
+
+	@include media($tablet){
+		font-size: 2rem;
+	}
 }
 
 h2:hover {
@@ -21,6 +25,11 @@ h2:hover {
 }
 
 p {
+	font-size: 0.8rem;
 	margin-bottom: $base-spacing-unit/2;
 	font-weight: 300;
+
+	@include media($tablet){
+		font-size: 1rem;
+	}
 }
