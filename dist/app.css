@@ -1,6 +1,11 @@
 /*
  *    1 - Settings
  */
+/*------------------------------------*    VARIABLES
+\*------------------------------------*/
+/* Variables for use throughout the codebase allowing for easy changes at a later date, and consistent colours/spacing. */
+/*------------------------------------*    FONT STACKS
+\*------------------------------------*/
 /*
  *    2 - Tools
  */
@@ -12,9 +17,16 @@ html {
 *::before {
   box-sizing: inherit; }
 
+/*------------------------------------*    BREAKPOINTS
+\*------------------------------------*/
+/*------------------------------------*    FONT-SMOOTHING
+\*------------------------------------*/
+/* Mixin to ensure accurate, smooth font rendering across browsers */
 /*
  *    3 - Generic
  */
+/* BOX-SIZING */
+/* A sensible default... */
 html {
   box-sizing: border-box;
   overflow: auto; }
@@ -187,6 +199,9 @@ textarea {
 /*
  *    4 - Base
  */
+/*------------------------------------*    BASE HTML ELEMENTS
+\*------------------------------------*/
+/* Styling class-less HTML elements */
 html,
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -253,6 +268,9 @@ p {
       top: 20px;
       right: 20px; } }
 
+/*------------------------------------*    MEDIA OBJECT
+\*------------------------------------*/
+/* As per http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/*/
 .media {
   clear: both; }
 
@@ -270,6 +288,8 @@ p {
   float: right;
   margin-left: 10px; }
 
+/*------------------------------------*    CONTAINERS
+\*------------------------------------*/
 .page-container {
   width: 90%;
   max-width: 800px;
@@ -279,6 +299,8 @@ p {
   display: block;
   position: relative; }
 
+/*------------------------------------*    LISTS
+\*------------------------------------*/
 .inline-list {
   display: flex;
   justify-content: flex-start;
@@ -291,6 +313,8 @@ p {
 /*
  *    6 - Components
  */
+/*------------------------------------*    FEED COMPONENT
+\*------------------------------------*/
 .feed-item {
   display: flex;
   align-items: center;
@@ -322,6 +346,8 @@ p {
 /*
  *    7 - Trumps
  */
+/*------------------------------------*    FONT-SMOOTHING TRUMPs
+\*------------------------------------*/
 .dark-on-light {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto; }
@@ -330,6 +356,8 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+/*------------------------------------*    DISPLAY TRUMPS
+\*------------------------------------*/
 .hide--mobile {
   display: none; }
   @media screen and (min-width: 801px) {
@@ -343,6 +371,9 @@ p {
 #description p:nth-child(-n+2) {
   display: none; }
 
+/*------------------------------------*    STYLING FOR INTRO
+\*------------------------------------*/
+/*Styling for the intro at the top of the feed. Not included within project for easy removal.*/
 #intro {
   width: 90%;
   max-width: 800px;

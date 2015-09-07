@@ -1,6 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var angular = require('angular');
 
+// Define Routes
+
 angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanitize'), require('angularjs-filters')])
 	.config(['$routeProvider', function ($routeProvider) {
 	    $routeProvider
@@ -20,16 +22,22 @@ angular.module('PotatoFlickr', [require('angular-route'), require('angular-sanit
 
 	
 // Services	
+	// Factory to manage the JSON feed fron Flickr
 require('./services/FlickrApi');
 
 // Controllers
+	// Main controller for dealing with the feed
 require('./controllers/MainController');
+	// Controller for managing the "detail" view
 require('./controllers/DetailController');	
 	
 	
 // Filters
+	// Filter to append authors name to required URL
 require('./filters/photoAuthor');
+	// Filter to clean the description field. Please note that this is not currently in use, as I was not able to get it to work. I have left the code as an exmaple of how I was trying to solve the problem.
 require('./filters/cleanDescription');
+	// Filter that outputs a list of buttons from the tad data in the JSON feed.
 require('./filters/tagsLinks');
 
 
