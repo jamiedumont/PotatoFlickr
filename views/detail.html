@@ -11,6 +11,7 @@
   		<p>Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
   	</li>
   </ul>
+  <!-- End ul.inline-list -->
 
 
   <div class="media">
@@ -18,19 +19,27 @@
   	<div class="media__img">
   		<img ng-src="{{ image.media.m }}"></img>
   	</div>
+    <!-- End .media__img -->
 
   	<div class="media__body">
+
   		<div ng-bind-html="image.description" id="description"></div>
+      <!-- Please note: Angular filter 'cleanDescription to be used here when working. CSS workaround (#description) included for time-being' -->
+      
   		<div class="tags">
 		  	<h4>Tags:</h4>
 		  	<div class="tags__container" ng-bind-html="image.tags | tagsLinks"></div>
-		</div>
+		  </div>
+      <!-- End .tags -->
 
   	</div>
+    <!-- End .media__body -->
   </div>
+  <!-- End .media -->
   
   <a class="btn btn--back" href="#/">Back</a>
 
 
 
 </div>
+<!-- End .DetailController -->

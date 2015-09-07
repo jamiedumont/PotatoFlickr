@@ -1,3 +1,9 @@
+/*------------------------------------*\
+    FONT-SMOOTHING
+\*------------------------------------*/
+
+/* Mixin to ensure accurate, smooth font rendering across browsers */
+
 @mixin font-smoothing($value: on) {
     @if $value==on {
         -webkit-font-smoothing: antialiased;

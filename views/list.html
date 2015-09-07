@@ -4,11 +4,15 @@
 		<div class="media feed-item">
 			
 			<a href="#/images/{{ images.indexOf(image) }}"class="media__img feed-item__thumbnail" style="background-image: url('{{ image.media.m }}')"></a>
+			<!-- Please note: poorly formed HTML (<a> with a background image directly applied), rewrite at earliest convenience. -->
 			
     
 		    <div class="media__body">
+		    	<!-- Feed Item Title -->
 				<a href="#/images/{{ images.indexOf(image) }}"><h2>{{ image.title | shorten: 25 || "No Title Provided..." }}</h2></a>
+				<!-- Publish date to display on mobile only -->
 			    <p class="hide--tablet">Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>
+			    
 			    <div class="feed-item__details">
 			    	<a class="btn" href="{{ image.author_id | photoAuthor }}" target="_blank">Photo Author</a>
 				    <p class="hide--mobile">Published: {{ image.published | date:"d MMM yyyy 'at:' HH:mm" }}</p>

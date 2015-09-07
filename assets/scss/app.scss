@@ -1,7 +1,7 @@
 /*
  *    1 - Settings
  */
-@import "1_settings/_settings.colour-variables";
+@import "1_settings/_settings.variables";
 @import "1_settings/_settings.font-stacks";
 
 /*
@@ -26,15 +26,15 @@
 /*
  *    5 - Objects
  */
-@import "5_objects/object.base-modifiers.scss";
-@import "5_objects/object.media.scss";
-@import "5_objects/object.containers.scss";
-@import "5_objects/object.lists.scss";
+@import "5_objects/object.buttons";
+@import "5_objects/object.media";
+@import "5_objects/object.containers";
+@import "5_objects/object.lists";
 
 /*
  *    6 - Components
  */
- @import "6_components/component.feed.scss";
+ @import "6_components/component.feed";
 
 /*
  *    7 - Trumps
