@@ -14,7 +14,7 @@ More information about using NPM as a build tool can be found here: [Keith Cirke
 
 BourbonNEAT was included as it's my library of choice to assist with mixins, includes and grids. It's very simple to implement, and you can use as much or as little of it as you like. It's main purpose on this project was providing breakpoints that are simple to implement.
 
-### I currently have the site hosted on my test server. [Click here to view live site](http://test.tactically-creative.co.uk)
+**I currently have the site hosted on my test server. [Click here to view live site](http://test.tactically-creative.co.uk)**
 
 #### Use it yourself!
 
